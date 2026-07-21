@@ -29,3 +29,4 @@ Copyright (c) 2018 Luis Diego Arias (ariassd@gmail.com).
 
 
 
+Cách chạy: dotnet run --project "c:\Users\Administrator\Desktop\ScreenDraw\ScreenDraw.csproj"
