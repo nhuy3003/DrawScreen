@@ -8,6 +8,7 @@
 		BorderThickness="3"
 		BorderBrush="Gray"
 		Loaded="Window_Loaded"
+        Closed="Window_Closed"
         WindowState="Maximized"
         ResizeMode="NoResize"
         KeyDown="Window_KeyDown">
@@ -18,12 +19,80 @@
                    Visibility="Collapsed">
         </TextBlock>
         <WrapPanel Name="wpShoot" Background="White" Visibility="Hidden" />
-        <Canvas Name="canv" MouseDown="canv_MouseDown" MouseMove="canv_MouseMove">
+        <Canvas Name="canv" MouseDown="canv_MouseDown" MouseMove="canv_MouseMove" MouseUp="canv_MouseUp">
             <Canvas.Background>
                 <SolidColorBrush Color="Black" Opacity="0"/>
             </Canvas.Background>
         </Canvas>
+
+        <Border Name="settingsPanel"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#F0222222"
+                BorderBrush="#FF888888"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="16"
+                Visibility="Collapsed">
+            <StackPanel MinWidth="320">
+                <TextBlock Text="Thiết lập phím tắt"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Margin="0,0,0,12"/>
+
+                <TextBlock Text="Desktop (dùng chuột bình thường)" Foreground="White" Margin="0,0,0,4"/>
+                <TextBox Name="txtHotkeyDesktop"
+                         Height="28"
+                         Margin="0,0,0,10"
+                         PreviewKeyDown="HotkeyBox_PreviewKeyDown"
+                         GotFocus="HotkeyBox_GotFocus"/>
+
+                <TextBlock Text="Pencil (vẽ tự do)" Foreground="White" Margin="0,0,0,4"/>
+                <TextBox Name="txtHotkeyPencil"
+                         Height="28"
+                         Margin="0,0,0,10"
+                         PreviewKeyDown="HotkeyBox_PreviewKeyDown"
+                         GotFocus="HotkeyBox_GotFocus"/>
+
+                <TextBlock Text="Rectangle (vẽ khung)" Foreground="White" Margin="0,0,0,4"/>
+                <TextBox Name="txtHotkeyRectangle"
+                         Height="28"
+                         Margin="0,0,0,10"
+                         PreviewKeyDown="HotkeyBox_PreviewKeyDown"
+                         GotFocus="HotkeyBox_GotFocus"/>
+
+                <TextBlock Text="Undo (hoàn tác)" Foreground="White" Margin="0,0,0,4"/>
+                <TextBox Name="txtHotkeyUndo"
+                         Height="28"
+                         Margin="0,0,0,12"
+                         PreviewKeyDown="HotkeyBox_PreviewKeyDown"
+                         GotFocus="HotkeyBox_GotFocus"/>
+
+                <TextBlock Name="txtHotkeyHint"
+                           Text="Nhấn vào ô phím tắt rồi bấm tổ hợp phím mới."
+                           Foreground="#FFCCCCCC"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Name="btnSaveSettings" Content="Lưu" Width="70" Height="28" Margin="0,0,8,0" Click="btnSaveSettings_Click"/>
+                    <Button Name="btnCloseSettings" Content="Đóng" Width="70" Height="28" Click="btnCloseSettings_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
         <StackPanel Name="stakPControls" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Vertical">
+            <Button Name="btnSettings"
+                    Height="30"
+                    Width="30"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="LightGray"
+                    FontSize="16"
+                    Content="⚙"
+                    ToolTip="Thiết lập phím tắt"
+                    Click="btnSettings_Click"/>
             <Button Name="btnClose" Height="30" Width="60" 
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Top" Background="LightGray"
